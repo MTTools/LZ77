@@ -1,7 +1,9 @@
 # LZ77
-Another variation of LZ77 compression and decompression implementation in C
+Another variation of LZ77 compression and decompression implementation in C.
 
-## Things to note:
+Made for compression of images for embedded software but can be used for any other need (e.g. text compression).
+
+### Things to note:
 - you are responsible for providing right size of result buffers,
 - worst case compression scenario should add about 1/8 overhead, so *output* buffer size (*output_limit*) should be at least (*input_length* * 9 / 8 + 1) of size,
 - if premature end of output buffer is reached (*output_limit*), algorithm keeps running till end of input buffer (*input_length*), without writing *output* - that is to count and return size of required buffer for further check (if decompression was successful and how big buffer to prepare for another run if not),

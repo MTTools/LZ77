@@ -1,5 +1,5 @@
 # LZ77
-Another variation of LZ77 compression and decompression implementation in C.
+Another variation of LZ77 compression and decompression algorithm in C.
 
 Made for compression of images for embedded software but can be used for any other need (e.g. text compression).
 

@@ -11,6 +11,10 @@
     #error LZ77_MATCH_LENGTH_BITS must be in 2-8 range
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 static const uint16_t WindowSize = (1 << LZ77_MATCH_OFFSET_BITS) - 1;
 static const uint16_t MatchMaxLenght = (1 << LZ77_MATCH_LENGTH_BITS) - 1; // also used as bitmask for extracting length from match
 
@@ -143,3 +147,7 @@ uint32_t lz77_decompress(uint8_t *input, uint32_t input_length, uint8_t *output,
     }
     return output_cursor;
 }
+
+#ifdef __cplusplus
+}
+#endif

@@ -18,7 +18,7 @@ extern "C" {
 static const uint16_t WindowSize = (1 << LZ77_MATCH_OFFSET_BITS) - 1;
 static const uint16_t MatchMaxLenght = (1 << LZ77_MATCH_LENGTH_BITS) - 1; // also used as bitmask for extracting length from match
 
-static uint16_t findMatch(uint8_t *input, uint32_t current_position, uint32_t input_length) {
+static uint16_t findMatch(const uint8_t *input, uint32_t current_position, uint32_t input_length) {
     const uint32_t WindowStartPosition = WindowSize > current_position ? 0 : current_position - WindowSize;
     uint32_t best_match_position = 0;
     uint16_t best_match_length = 0;
@@ -55,7 +55,7 @@ static uint16_t findMatch(uint8_t *input, uint32_t current_position, uint32_t in
     }
 }
 
-uint32_t lz77_compress(uint8_t *input, uint32_t input_length, uint8_t *output, uint32_t output_limit) {
+uint32_t lz77_compress(const uint8_t *input, uint32_t input_length, uint8_t *output, uint32_t output_limit) {
     uint32_t input_cursor = 0, output_cursor = 0;
     uint8_t output_bitmask = 0;
     uint8_t *ouptut_literal_bitmask;
@@ -100,7 +100,7 @@ uint32_t lz77_compress(uint8_t *input, uint32_t input_length, uint8_t *output, u
     return output_cursor;
 }
 
-uint32_t lz77_decompress(uint8_t *input, uint32_t input_length, uint8_t *output, uint32_t output_limit) {
+uint32_t lz77_decompress(const uint8_t *input, uint32_t input_length, uint8_t *output, uint32_t output_limit) {
     uint32_t output_cursor = 0;
     uint8_t input_literal_bitmask = input[0];
     uint8_t input_bitmask = 0;
